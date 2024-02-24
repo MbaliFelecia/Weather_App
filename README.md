@@ -2,6 +2,8 @@
 
 Welcome to the Weather App! This application provides real-time weather information to users, helping them stay informed about current weather conditions, forecasts, and more.
 
+## Preview
+![WhatsApp Image 2024-02-24 at 17 35 13](https://github.com/MbaliFelecia/Weather_App/assets/122841656/cddfbedd-d076-41f9-bfa6-be9f5d25e378)
 ## Features
 
 - **Current Weather:** Get the current weather conditions for your location.
