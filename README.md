@@ -1,4 +1,3 @@
-cat > README.md << "EOF"
 # Weather App README
 
 Welcome to the Weather App! This application provides real-time weather information to users, helping them stay informed about current weather conditions, forecasts, and more.
