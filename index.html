@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Meta tag for responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the webpage -->
     <title>Weather App</title>
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Main card container -->
     <div class="card">
+      <!-- Search section -->
       <div class="search">
+        <!-- Input box for city name -->
         <input type="text" placeholder="Enter city name" spellcheck="false" />
+        <!-- Button to trigger search -->
         <button><img src="images/search.png" /></button>
       </div>
+      <!-- Error message section -->
       <div class="error">
         <p>Invalid city name</p>
       </div>
+      <!-- Weather information section -->
       <div class="weather">
+        <!-- Weather icon -->
         <img src="images/rain.png" class="weather-icon" />
+        <!-- Temperature -->
         <h1 class="temp">22°c</h1>
+        <!-- City name -->
         <h2 class="city">Johanessburg</h2>
+        <!-- Details section including humidity and wind speed -->
         <div class="details">
+          <!-- Column for humidity -->
           <div class="col">
+            <!-- Humidity icon -->
             <img src="images/humidity.png" />
             <div>
+              <!-- Humidity value -->
               <p class="humidity">50%</p>
+              <!-- Label for humidity -->
               <p>Humidity</p>
             </div>
           </div>
+          <!-- Column for wind speed -->
           <div class="col">
+            <!-- Wind speed icon -->
             <img src="images/wind.png" />
             <div>
+              <!-- Wind speed value -->
               <p class="wind">15 km/h</p>
+              <!-- Label for wind speed -->
               <p>Wind Speed</p>
             </div>
           </div>
@@ -37,24 +58,33 @@
       </div>
     </div>
 
+    <!-- JavaScript section -->
     <script>
+      // API key for accessing weather data
       const apiKey = "790504a2584569b66c6706757ea269ce";
+      // API endpoint for weather data
       const apiUrl =
         "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
+      // DOM elements selection
       const searchBox = document.querySelector(".search input");
       const searchBtn = document.querySelector(".search button");
       const weatherIcon = document.querySelector(".weather-icon");
 
+      // Function to check weather based on city name
       async function checkWeather(city) {
+        // Fetch weather data from API
         const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
+        // If city not found, display error message
         if (response.status == 404) {
           document.querySelector(".error").style.display = "block";
           document.querySelector(".weather").style.display = "none";
         } else {
+          // Parse JSON response
           var data = await response.json();
 
+          // Update weather information in DOM
           document.querySelector(".city").innerHTML = data.name;
           document.querySelector(".temp").innerHTML =
             Math.round(data.main.temp) + "°c";
@@ -62,6 +92,7 @@
             data.main.humidity + "%";
           document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
 
+          // Set weather icon based on weather condition
           if (data.weather[0].main == "Clouds") {
             weatherIcon.src = "images/clouds.png";
           } else if (data.weather[0].main == "Clear") {
@@ -74,10 +105,13 @@
             weatherIcon.src = "images/mist.png";
           }
 
+          // Display weather information section and hide error message
           document.querySelector(".weather").style.display = "block";
           document.querySelector(".error").style.display = "none";
         }
       }
+      
+      // Event listener for search button click
       searchBtn.addEventListener("click", () => {
         checkWeather(searchBox.value);
       });
