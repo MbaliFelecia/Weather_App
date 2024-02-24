@@ -40,8 +40,7 @@ Contributions are welcome! If you find any bugs or have suggestions for improvem
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
-EOF
+This project is not licensed. Its deployed as ALX project.  
 
 ## Author
 Mbali Felecia Ramakgasha
